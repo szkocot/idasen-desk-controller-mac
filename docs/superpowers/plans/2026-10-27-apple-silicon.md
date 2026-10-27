@@ -42,3 +42,6 @@ scripts/verify-release.sh, README.md, .github/workflows/release-build.yml.
 
 - Architecture check fails on the original Intel-only helper, as expected.
 - Ruling: build using GitHub Actions/Xcode 16.4 because installed Xcode 27 rejects the existing macOS 10.15 deployment target; preserve backwards compatibility.
+- Local diagnostic compile exposed missing CoreGraphics import; adding it fixes compilation for both architectures.
+- Strict signature verification exposed upstream helper signing using the display name instead of the identity hash; pass EXPANDED_CODE_SIGN_IDENTITY to its script.
+- Clean diagnostic build passes architecture and deep signature checks. The published artifact will still use supported Xcode 16.4.

@@ -9,7 +9,7 @@ xcodebuild -project 'Desk Controller.xcodeproj' -scheme 'Desk Controller' \
     -derivedDataPath "$PWD/build/DerivedData" \
     ARCHS='arm64 x86_64' ONLY_ACTIVE_ARCH=NO \
     CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY=- DEVELOPMENT_TEAM= \
-    EXPANDED_CODE_SIGN_IDENTITY_NAME=- build
+    clean build
 
 app="$PWD/build/DerivedData/Build/Products/Release/Desk Controller.app"
 bash scripts/verify-release.sh "$app"
