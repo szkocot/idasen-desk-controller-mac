@@ -10,7 +10,7 @@ If you find this at least a little bit useful, why don't you help me out by:
 * Follow me on Twitter [@davidwilliames](https://twitter.com/davidwilliames)
 
 
-[**Download latest release**](https://github.com/DWilliames/idasen-controller/releases/latest/download/Desk.Controller.app.zip)
+[**Download latest release**](https://github.com/szkocot/idasen-desk-controller-mac/releases/latest/download/Desk.Controller.app.zip)
 
 ---
 
@@ -45,9 +45,19 @@ I'm already on my Mac when sitting/standing at my desk — so why can't I quickl
 ![Animated example](/images/status_bar_example.png)
 
 
+## Compatibility
+
+Version 1.0.3 requires an Apple Silicon Mac (arm64) running macOS 26 or later. Both the app and login helper are arm64-only. Intel Macs are not supported by this release.
+
+Releases are ad hoc signed and are not notarized. macOS may require you to allow the app in System Settings → Privacy & Security after the first launch attempt.
+
+## Build a release
+
+With Xcode 26 or later installed, run `bash scripts/build-release.sh`. This builds the arm64 app, thins the bundled login helper to arm64, verifies all bundled executables and signatures, and writes `build/release/Desk.Controller.app.zip` and its SHA256 checksum. GitHub Actions uses Xcode 26.6 on macOS 26. To verify an extracted app, run `bash scripts/verify-release.sh "path/to/Desk Controller.app"`.
+
 ## Getting started
 
-* [Download the 'Desk Controller' App](https://github.com/DWilliames/idasen-controller/releases/latest/download/Desk.Controller.app.zip), and move it to your 'Applications' folder
+* [Download the 'Desk Controller' App](https://github.com/szkocot/idasen-desk-controller-mac/releases/latest/download/Desk.Controller.app.zip), and move it to your 'Applications' folder
 * Double-click to open it
 * Now it will show up in your Status Bar
 
