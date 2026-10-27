@@ -47,13 +47,13 @@ I'm already on my Mac when sitting/standing at my desk — so why can't I quickl
 
 ## Compatibility
 
-The release app and login helper run natively on Apple Silicon (arm64, macOS 11 or later) and Intel (x86_64, macOS 10.15 or later). Rosetta is not required.
+Version 1.0.3 requires an Apple Silicon Mac (arm64) running macOS 26 or later. Both the app and login helper are arm64-only. Intel Macs are not supported by this release.
 
 Releases are ad hoc signed and are not notarized. macOS may require you to allow the app in System Settings → Privacy & Security after the first launch attempt.
 
 ## Build a release
 
-With Xcode 16.4 installed, run `bash scripts/build-release.sh`. This builds both architectures, verifies all bundled executables and signatures, and writes `build/release/Desk.Controller.app.zip` and its SHA256 checksum. The GitHub Actions release build selects Xcode 16.4 to retain compatibility with older macOS versions; Xcode 27 requires macOS 12 or later. To verify an extracted app, run `bash scripts/verify-release.sh "path/to/Desk Controller.app"`.
+With Xcode 26 or later installed, run `bash scripts/build-release.sh`. This builds the arm64 app, thins the bundled login helper to arm64, verifies all bundled executables and signatures, and writes `build/release/Desk.Controller.app.zip` and its SHA256 checksum. GitHub Actions uses Xcode 26.6 on macOS 26. To verify an extracted app, run `bash scripts/verify-release.sh "path/to/Desk Controller.app"`.
 
 ## Getting started
 

@@ -1,4 +1,4 @@
-name: Universal macOS release build
+name: Apple Silicon macOS release build
 
 on:
   workflow_dispatch:
@@ -10,16 +10,16 @@ permissions:
 
 jobs:
   build:
-    runs-on: macos-15-arm64
+    runs-on: macos-26-arm64
     env:
-      DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
+      DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
     steps:
       - uses: actions/checkout@v4
-      - name: Build and verify universal app
+      - name: Build and verify arm64 app
         run: bash scripts/build-release.sh
       - uses: actions/upload-artifact@v4
         with:
-          name: Desk-Controller-universal
+          name: Desk-Controller-arm64
           path: |
             build/release/Desk.Controller.app.zip
             build/release/SHA256SUMS

@@ -1,18 +1,20 @@
 # Apple Silicon release
 
-Approved scope: release v1.0.3 as a universal macOS app supporting arm64 and
-x86_64, including the login helper. Preserve macOS 10.15 support for Intel.
+User-approved final scope: release v1.0.3 for arm64 Apple Silicon only,
+requiring macOS 26 or later. This supersedes the earlier universal release scope.
 
-The existing main executable is universal, but LaunchAtLogin 4.0 bundles an
-Intel-only helper. Upgrade within its existing major version to 4.2, which
-includes the upstream Apple Silicon fix. Keep application behavior unchanged.
+Use the existing Swift/Xcode app and LaunchAtLogin 4.2, which contains the
+upstream Apple Silicon helper fix. Build the app for arm64, thin the upstream
+universal helper to arm64, and sign the helper then the containing app.
+Keep application behavior unchanged. Add the missing CoreGraphics import needed
+by current Swift compilers.
 
-Alternatives: an arm64-only release would remove Intel support; rebuilding the
-dependency's helper ourselves would duplicate upstream packaging. A universal
-app using the fixed dependency is the smallest complete solution.
+Alternatives: a universal release was initially approved, then explicitly
+replaced by the user's arm64-only/macOS 26 requirement. No Intel slice or older
+macOS compatibility is required in the release.
 
-Verify every bundled Mach-O executable contains both architectures and verify
-code signatures before publishing a ZIP and checksum through gh. Update README
-downloads to this fork. No Developer ID identity is installed, so use ad hoc
-signing and disclose the lack of notarization. Desk hardware testing remains
-with the user.
+Verify every bundled Mach-O is arm64-only, the app requires macOS 26.0, and
+all signatures are valid before publishing a ZIP and checksum through gh.
+Update README downloads to this fork. Use ad hoc signing and disclose the lack
+of notarization because no Developer ID identity is available. Desk hardware
+testing remains with the user.
